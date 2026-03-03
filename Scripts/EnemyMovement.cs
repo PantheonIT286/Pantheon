@@ -13,8 +13,19 @@ public class EnemyMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Initial Variables
         currentSpeed = data.speed;
         currentHealth = data.health;
+
+        //Makes sure enemies don't spawn underground
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out hit, 10f))
+        {
+
+            float groundedY = hit.point.y;
+
+            transform.position = new Vector3(transform.position.x, groundedY, transform.position.z);
+        }
     }
 
     // Update is called once per frame
