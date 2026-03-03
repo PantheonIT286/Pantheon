@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public EnemyData data;
+    private float currentSpeed;
+    private int currentHealth;
+
     public PathManager pathManager;
     public float moveSpeed = 5f;
 
@@ -9,7 +13,8 @@ public class EnemyMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        currentSpeed = data.speed;
+        currentHealth = data.health;
     }
 
     // Update is called once per frame
@@ -25,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 targetPos,
-                moveSpeed * Time.deltaTime
+                currentSpeed * Time.deltaTime
             );
 
             //Check if enemy has arrived at destination
