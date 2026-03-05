@@ -1,0 +1,41 @@
+:root {
+}
+
+.button-storyMenu {
+    justify-content: space-between;
+    align-self: center;
+    align-content: flex-end;
+    top: 69%;
+    width: 20%;
+    background-size: 101% 101%;
+    height: 13%;
+    -unity-font-definition: url("project://database/Assets/Pantheon/UI/Fonts/BreakRomanRegular-wo5Bn.ttf?fileID=12800000&guid=19ce39859a45242459b96c97c5158194&type=3#BreakRomanRegular-wo5Bn");
+    background-image: url("project://database/Assets/Pantheon/UI/Icons/Button%20Assets/Old%20Paper%20Button%20Asset/Old%20Paper%20Button%20(Normal).png?fileID=2800000&guid=e7afc3b967071b54092345adfbe3446a&type=3#Old Paper Button (Normal)");
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgba(0, 0, 0, 0.69);
+    border-right-color: rgba(0, 0, 0, 0.69);
+    border-top-color: rgba(0, 0, 0, 0.69);
+    border-bottom-color: rgba(0, 0, 0, 0.69);
+    color: rgba(93, 66, 0, 0.75);
+    right: 2%;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    text-shadow: 3px 3px 20px rgb(0, 0, 0);
+    -unity-text-outline-color: rgba(193, 193, 193, 0);
+    font-size: 100%;
+}
+
+.button-storyMenu:hover {
+    background-image: url("project://database/Assets/Pantheon/UI/Icons/Button%20Assets/Old%20Paper%20Button%20Asset/Old%20Paper%20Button%20(Light).png?fileID=2800000&guid=f932eba8f10bc724fb55859eef510e19&type=3#Old Paper Button (Light)");
+    background-size: 101% 101%;
+    color: rgba(120, 85, 0, 0.75);
+}
+
+.button-storyMenu:active {
+    background-image: url("project://database/Assets/Pantheon/UI/Icons/Button%20Assets/Old%20Paper%20Button%20Asset/Old%20Paper%20Button%20(Dark).png?fileID=2800000&guid=2b86ab1dd80112c4d99532ffcd8a7e07&type=3#Old Paper Button (Dark)");
+    color: rgba(70, 50, 1, 0.75);
+}
