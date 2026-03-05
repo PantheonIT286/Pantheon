@@ -12,30 +12,37 @@ public class Main : MonoBehaviour //this is health taken from the entitys class
     public int Cooldown = 0;//If im correct each individual unit enemy or ally when spawned in will have their own version of this file so this way I dont have to keep pushing stuff from file to file
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start(){
-       
+    void Start()
+    {
+
     }
-  
 
 
-    public bool Alive(float Health){
-        if (Health > 0f){
+
+    public bool Alive(float Health)
+    {
+        if (Health > 0f)
+        {
             return true;
         }
-        else        {
-            if (gameObject.tag == "Enemy")            {
+        else
+        {
+            if (gameObject.tag == "Enemy")
+            {
                 GameManager.Instance.Gold = GameManager.Instance.Gold + (3 * DifficultyScale * Level);//Why 3? no clue you can change it if you want once we figure out the ingame economy 
             }
             Destroy(gameObject);
         }
     }
 
-    public void Attacked(float Damage, float Health){
-       
-            Health=Health-Damage;
+    public void Attacked(float Damage, float Health)
+    {
+
+        Health = Health - Damage;
         Alive(Health);
     }
     public void Attack(float Damage, GameObject Target)
     {
         Target.UnitBase.Attacked(Damage, Target.UnitBase.Health);
+    }
 }

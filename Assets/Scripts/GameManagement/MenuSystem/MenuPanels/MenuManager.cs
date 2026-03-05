@@ -97,7 +97,9 @@ public class MainMenuInteractivity : MonoBehaviour{
             easyButton.clicked += () => {
                 Debug.Log("Easy button clicked!");
                 SceneManager.LoadScene("Easy");
-                };
+                GameManager.Instance.DifficultyScale = 1; 
+
+            };
         else
             Debug.LogError("Easy button not found in the UI document.");
 
@@ -106,7 +108,8 @@ public class MainMenuInteractivity : MonoBehaviour{
             mediumButton.clicked += () => {
                 Debug.Log("Medium button clicked!");
                 SceneManager.LoadScene("Medium");
-                };
+                GameManager.Instance.DifficultyScale = 3;
+            };
         else
             Debug.LogError("Medium button not found in the UI document.");
 
@@ -114,6 +117,7 @@ public class MainMenuInteractivity : MonoBehaviour{
             hardButton.clicked += () => {
                 Debug.Log("Hard button clicked!");
                 SceneManager.LoadScene("Hard");
+                GameManager.Instance.DifficultyScale = 10;
             };
         else
             Debug.LogError("Hard button not found in the UI document.");
