@@ -15,4 +15,5 @@ MonoBehaviour:
   enemyName: Fast
   speed: 7
   health: 10
+  goldReward: 5
   prefab: {fileID: 3064290807022712382, guid: 7cb8cd06766309f4a92b66a2a264e575, type: 3}

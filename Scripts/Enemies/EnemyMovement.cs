@@ -11,6 +11,20 @@ public class EnemyMovement : MonoBehaviour
 
     private int waypointIndex = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    //When the enemy dies, have it udpate the Gold Variable.
+    void Die()
+    {
+        EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
+
+        if (economy != null)
+        {
+            economy.AddGold(data.goldReward);
+        }
+
+        Destroy(gameObject);
+    }
+    
     void Start()
     {
         //Initial Variables
@@ -52,8 +66,8 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            //Destroy Enemy at the End
-            Destroy(gameObject);
+            //Call the Die Function.
+            Die();
         }
     }
 }
