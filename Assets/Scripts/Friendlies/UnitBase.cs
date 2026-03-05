@@ -32,6 +32,7 @@ public class Main : MonoBehaviour //this is health taken from the entitys class
                 GameManager.Instance.Gold = GameManager.Instance.Gold + (3 * DifficultyScale * Level);//Why 3? no clue you can change it if you want once we figure out the ingame economy 
             }
             Destroy(gameObject);
+            return false;
         }
     }
 
@@ -43,6 +44,6 @@ public class Main : MonoBehaviour //this is health taken from the entitys class
     }
     public void Attack(float Damage, GameObject Target)
     {
-        Target.UnitBase.Attacked(Damage, Target.UnitBase.Health);
+        // Target.UnitBase.Attacked(Damage, Target.UnitBase.Health);
     }
 }
