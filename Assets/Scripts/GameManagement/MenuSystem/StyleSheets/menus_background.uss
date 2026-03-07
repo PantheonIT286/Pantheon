@@ -1,0 +1,23 @@
+:root {
+}
+
+.background {
+    background-image: url("project://database/Assets/Pantheon/Textures/Velvet%20Texture.png?fileID=2800000&guid=2e192cb4e3a268840a411ae1fee13fd5&type=3#Velvet Texture");
+    -unity-background-image-tint-color: rgb(0, 42, 82);
+    align-self: center;
+}
+
+.backgroundOpacityAppear {
+    opacity: 1;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
+    transition-duration: 1s;
+}
+
+.backgroundOpacityHidden {
+    opacity: 0;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
+    transition-duration: 1s;
+    visibility: visible;
+}
