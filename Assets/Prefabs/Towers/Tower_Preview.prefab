@@ -91,6 +91,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1741052574206529568
 BoxCollider:
@@ -127,10 +128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlacementValidator
   validGroundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   blockedLayers:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 0
   checkRadius: 1
 --- !u!114 &4066846649923734853
 MonoBehaviour:

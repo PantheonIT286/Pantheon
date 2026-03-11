@@ -1279,6 +1279,49 @@ MonoBehaviour:
     - enemyType: {fileID: 11400000, guid: 2e0c37f5dd40a80419c209ac65fdf20a, type: 2}
       count: 1
       spawnRate: 1
+  - waveName: Wave 4
+    enemyGroups:
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
+      count: 1
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: 2e0c37f5dd40a80419c209ac65fdf20a, type: 2}
+      count: 1
+      spawnRate: 3
+  - waveName: Wave 5
+    enemyGroups:
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 5
+      spawnRate: 1.5
+    - enemyType: {fileID: 11400000, guid: 2e0c37f5dd40a80419c209ac65fdf20a, type: 2}
+      count: 3
+      spawnRate: 2.5
   spawnPoint: {fileID: 1849583875}
   path: {fileID: 2134455501}
 --- !u!4 &1730601416
