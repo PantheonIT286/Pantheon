@@ -1,70 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WaveSpawner : MonoBehaviour
 {
     [System.Serializable]
-    public class WaveContent
+    public class EnemyGroup // This defines a specific "batch" of enemies
     {
         public EnemyData enemyType;
         public int count;
         public float spawnRate;
     }
 
-    public List<WaveContent> waves; 
+    [System.Serializable]
+    public class Wave // This defines a collection of batches
+    {
+        public string waveName; // Useful for organization
+        public List<EnemyGroup> enemyGroups;
+    }
+
+    [Header("Setup References")]
+    public List<Wave> waves; 
     public Transform spawnPoint;
     public PathManager path;
 
     private int currentWaveIndex = 0;
     private bool isSpawning = false;
 
-    // REMOVE the Start() method if you don't want it to auto-start anymore!
-    
     void Update()
     {
-        // Debugging the keypress
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && !isSpawning)
         {
-            Debug.Log("Space bar pressed!"); // This will show in Console to confirm input works
-            TryStartNextWave();
-        }
-    }
-
-    public void TryStartNextWave()
-    {
-        if (currentWaveIndex < waves.Count && !isSpawning)
-        {
+            Debug.Log("Space Bar Pressed.");
             StartCoroutine(SpawnWave());
-        }
-        else if (currentWaveIndex >= waves.Count)
-        {
-            Debug.Log("No more waves left!");
         }
     }
 
     IEnumerator SpawnWave()
     {
         isSpawning = true;
-        WaveContent currentWave = waves[currentWaveIndex];
-        Debug.Log($"<color=cyan>Spawning Wave {currentWaveIndex + 1}</color>");
+        Wave currentWave = waves[currentWaveIndex];
+        Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
 
-        for (int i = 0; i < currentWave.count; i++)
+        // Now we loop through each GROUP in the wave
+        foreach (EnemyGroup group in currentWave.enemyGroups)
         {
-            GameObject enemyGO = Instantiate(currentWave.enemyType.prefab, spawnPoint.position, Quaternion.identity);
-            
-            EnemyMovement moveScript = enemyGO.GetComponent<EnemyMovement>();
-            if (moveScript != null)
+            for (int i = 0; i < group.count; i++)
             {
-                moveScript.pathManager = path;
-                moveScript.data = currentWave.enemyType;
-            }
+                if (group.enemyType.prefab == null) yield break;
 
-            yield return new WaitForSeconds(currentWave.spawnRate);
+                GameObject enemyGO = Instantiate(group.enemyType.prefab, spawnPoint.position, Quaternion.identity);
+                
+                EnemyMovement moveScript = enemyGO.GetComponent<EnemyMovement>();
+                if (moveScript != null)
+                {
+                    moveScript.pathManager = path;
+                    moveScript.data = group.enemyType;
+                }
+
+                yield return new WaitForSeconds(group.spawnRate);
+            }
+            
+            // Optional: Wait a second or two between different types of enemies
+            yield return new WaitForSeconds(1.0f); 
         }
 
         currentWaveIndex++;
         isSpawning = false;
-        Debug.Log("<color=green>Wave Finished Spawning.</color> Press Space for next wave.");
+        Debug.Log("<color=green>Wave Manager:</color> Wave complete.");
     }
 }

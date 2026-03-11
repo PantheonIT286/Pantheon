@@ -251,14 +251,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203844586}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -1203,6 +1203,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1729542548
 MeshFilter:
@@ -1257,15 +1258,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSpawner
   waves:
-  - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
-    count: 10
-    spawnRate: 1
-  - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
-    count: 10
-    spawnRate: 1
-  - enemyType: {fileID: 11400000, guid: 2e0c37f5dd40a80419c209ac65fdf20a, type: 2}
-    count: 10
-    spawnRate: 1
+  - waveName: Wave 1
+    enemyGroups:
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 10
+      spawnRate: 2.5
+  - waveName: Wave 2
+    enemyGroups:
+    - enemyType: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
+      count: 5
+      spawnRate: 2.5
+    - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
+      count: 5
+      spawnRate: 2.5
+  - waveName: Wave 3
+    enemyGroups:
+    - enemyType: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
+      count: 5
+      spawnRate: 1
+    - enemyType: {fileID: 11400000, guid: 2e0c37f5dd40a80419c209ac65fdf20a, type: 2}
+      count: 1
+      spawnRate: 1
   spawnPoint: {fileID: 1849583875}
   path: {fileID: 2134455501}
 --- !u!4 &1730601416
