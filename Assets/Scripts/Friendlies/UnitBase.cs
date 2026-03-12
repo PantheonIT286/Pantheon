@@ -19,8 +19,7 @@ public class Main : MonoBehaviour //this is health taken from the entitys class
 
 
 
-    public bool Alive(float Health)
-    {
+    public bool Alive(float Health){
         if (Health > 0f)
         {
             return true;
@@ -29,13 +28,11 @@ public class Main : MonoBehaviour //this is health taken from the entitys class
         {
             if (gameObject.tag == "Enemy")
             {
-                GameManager.Instance.Gold = GameManager.Instance.Gold + (3 * DifficultyScale * Level);//Why 3? no clue you can change it if you want once we figure out the ingame economy 
+                EnemyMovement.Die();
+                return false;
             }
-            Destroy(gameObject);
-            return false;
         }
     }
-
     public void Attacked(float Damage, float Health)
     {
 

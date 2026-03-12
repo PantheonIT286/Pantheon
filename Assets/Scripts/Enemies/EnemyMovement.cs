@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     //When the enemy dies, have it udpate the Gold Variable.
-    void Die()
+    public void Die()
     {
         EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
 
