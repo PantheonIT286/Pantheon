@@ -101,3 +101,19 @@ InitTestScene*.unity*
 My project.slnx
 Pantheon.slnx
 TutorialInfo/
+
+# Substance Painter
+*.spp
+
+# Blender
+*.blend
+
+# Photoshop
+*.psd
+
+# Unity generated folders
+Library/
+Temp/
+Obj/
+Build/
+Builds/
