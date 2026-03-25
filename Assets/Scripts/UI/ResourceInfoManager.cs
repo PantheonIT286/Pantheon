@@ -39,7 +39,6 @@ public class ResourceInfoManager : MonoBehaviour{
         resourceInfoPanels[2].SetActive(!resourceInfoPanels[2].activeSelf);
     }
 
-    //private methods
         // Sets all panels in the resourceInfoPanels array to inactive (hidden)
         public void hideAllPanels(){
             for (int i = 0; i < resourceInfoPanels.Length; i++){
