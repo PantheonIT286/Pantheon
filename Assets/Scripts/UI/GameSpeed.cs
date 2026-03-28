@@ -7,7 +7,7 @@ public class GameSpeed : MonoBehaviour{
 
     public void fastSpeed(){
         if (Time.timeScale == 1){
-            Time.timeScale = 2.0f;
+            Time.timeScale = 2;
             speedText.text = "Fast Speed";
         } else{
             normalSpeed();
