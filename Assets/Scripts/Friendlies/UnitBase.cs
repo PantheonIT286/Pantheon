@@ -5,6 +5,7 @@ using UnityEngine;
  So im thinking that all the units and bosses enemys and allies will use this file to do all the actual work the unit specific file will only hold their values so some of this code will be commented out just so it doesnt cause any
 errors but after milestone 2 it should all be set
  * */
+/*
 public class Main : MonoBehaviour //this is health taken from the entitys class
 {
     public int DifficultyScale = GameManager.Instance.DifficultyScale;
@@ -44,3 +45,4 @@ public class Main : MonoBehaviour //this is health taken from the entitys class
         // Target.UnitBase.Attacked(Damage, Target.UnitBase.Health);
     }
 }
+*/
