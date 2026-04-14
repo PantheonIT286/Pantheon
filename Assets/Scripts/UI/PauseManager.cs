@@ -3,7 +3,7 @@ using TMPro;
 
 public class PauseMenu : MonoBehaviour{
       public TextMeshProUGUI pauseText; // UI text component to display pause messages.
-      public TextMeshProUGUI speedText;
+      public TextMeshProUGUI speedText; // UI text component to check the current game speed.
 
     // Pauses the game and activates the pause menu UI.
     public void Pause(){
@@ -19,16 +19,18 @@ public class PauseMenu : MonoBehaviour{
 
    // Resumes the game and deactivates the pause menu UI.
    void Resume(){
-      // Check if the game is currently paused and toggle the resume state accordingly.
+      // Check the current game speed and set the time scale accordingly when resuming the game.
          if (Time.timeScale == 0){
             if (speedText.text == "Normal Speed"){
                Time.timeScale = 1; 
                pauseText.text = "Pause";
-            } else{
+            } else if (speedText.text == "Medium Speed"){
                Time.timeScale = 2; 
                pauseText.text = "Pause";
+            } else if (speedText.text == "Fast Speed"){
+               Time.timeScale = 3; 
+               pauseText.text = "Pause";
             }
-
          }  
    }
 }

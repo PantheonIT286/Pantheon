@@ -2,20 +2,31 @@ using UnityEngine;
 using TMPro;
 
 public class GameSpeed : MonoBehaviour{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI speedText; // UI text component to display the current game speed.
 
-    public void fastSpeed(){
-        if (Time.timeScale == 1){
-            Time.timeScale = 2;
-            speedText.text = "Fast Speed";
-        } else{
-            normalSpeed();
+    // Changes the game speed between normal, medium, and fast.
+        public void mediumSpeed(){
+            if (Time.timeScale == 1){
+                Time.timeScale = 2;
+                speedText.text = "Medium Speed";
+            } else{
+                fastSpeed();
+            }
         }
-    }
 
-    private void normalSpeed(){
-        Time.timeScale = 1;
-        speedText.text = "Normal Speed";
-    }
+        private void fastSpeed(){
+            if (Time.timeScale == 2){
+                Time.timeScale = 3;
+                speedText.text = "Fast Speed";
+            } else{
+                normalSpeed(); 
+            }
+        }
+
+        private void normalSpeed(){
+            if (Time.timeScale != 0){
+                Time.timeScale = 1;
+                speedText.text = "Normal Speed";
+            }
+        }
 }

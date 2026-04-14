@@ -31,7 +31,7 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
     public PathManager path;
 
-    public TextMeshProUGUI waveInfo;
+    public TextMeshProUGUI waveInfo; // UI text component to display wave information.
 
     private int currentWaveIndex = 0;
     private bool isSpawning = false;
@@ -49,7 +49,7 @@ public class WaveSpawner : MonoBehaviour
         isSpawning = true;
         Wave currentWave = waves[currentWaveIndex];
         Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
-        waveInfo.text = "Starting " + currentWave.waveName;
+        waveInfo.text = currentWave.waveName;
 
         // Now we loop through each GROUP in the wave
         foreach (EnemyGroup group in currentWave.enemyGroups)
