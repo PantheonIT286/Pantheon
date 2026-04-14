@@ -40,6 +40,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && !isSpawning)
         {
+            Debug.Log("Space Bar Pressed.");
             StartCoroutine(SpawnWave());
         }
     }
