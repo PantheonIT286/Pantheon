@@ -106,7 +106,7 @@ TutorialInfo/
 *.spp
 
 # Blender
-*.blend
+#*.blend
 
 # Photoshop
 *.psd
