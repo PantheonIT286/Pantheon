@@ -72,9 +72,7 @@ public class MainMenuInteractivity : MonoBehaviour{
                 Debug.Log("Quit button clicked!");
                 Debug.Log("Exiting game...");
                 Application.Quit();
-                #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false; // Stop play mode in the Unity Editor when the quit button is clicked.
-                #endif
+                EditorApplication.isPlaying = false; // Stop play mode in the Unity Editor when the quit button is clicked.
             };
         else            
             Debug.LogError("Quit button not found in the UI document.");
