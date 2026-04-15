@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
+/*
+Purpose of this script is to create the Wave Manager. If you want to edit/create waves, go to the WaveManager
+GameObject within the easy scene and you'll find it under the script component. To start a wave in-game, press
+Space and the wave should begin to spawn. You can't spawn a wave while one is currently spawning.
+*/
 public class WaveSpawner : MonoBehaviour
 {
     [System.Serializable]
@@ -25,6 +31,8 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
     public PathManager path;
 
+    public TextMeshProUGUI waveInfo; // UI text component to display wave information.
+
     private int currentWaveIndex = 0;
     private bool isSpawning = false;
 
@@ -32,7 +40,6 @@ public class WaveSpawner : MonoBehaviour
     {
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && !isSpawning)
         {
-            Debug.Log("Space Bar Pressed.");
             StartCoroutine(SpawnWave());
         }
     }
@@ -42,6 +49,7 @@ public class WaveSpawner : MonoBehaviour
         isSpawning = true;
         Wave currentWave = waves[currentWaveIndex];
         Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
+        waveInfo.text = currentWave.waveName;
 
         // Now we loop through each GROUP in the wave
         foreach (EnemyGroup group in currentWave.enemyGroups)
@@ -69,5 +77,6 @@ public class WaveSpawner : MonoBehaviour
         currentWaveIndex++;
         isSpawning = false;
         Debug.Log("<color=green>Wave Manager:</color> Wave complete.");
+        waveInfo.text = "Wave Complete";
     }
 }

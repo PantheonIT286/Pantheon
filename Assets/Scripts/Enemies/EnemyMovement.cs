@@ -1,5 +1,13 @@
 using UnityEngine;
 
+/*
+Purpose of this script is to have the enemy move around the level by moving from one checkpoint to
+the next. When it reaches the end it will call the Die() function which tells the EconomyManager to
+add gold. Right now since there's no way of killing enemies, when it reaches the end it will act
+like it's been "killed" and drop the gold. That part needs to be updated to account for towers killing enemies,
+and not award gold if an enemy reaches the end.
+*/
+
 public class EnemyMovement : MonoBehaviour
 {
     public EnemyData data;
