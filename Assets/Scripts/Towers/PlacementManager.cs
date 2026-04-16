@@ -9,6 +9,7 @@ public class PlacementManager : MonoBehaviour
 
     private Camera strategyCamera;
     private InputSystem_Actions inputActions;
+    internal static readonly object Instance;
 
     private void Start()
     {
@@ -43,7 +44,7 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
-    void TryPlaceTower()
+     public void TryPlaceTower()
     {
         PlacementValidator validator = previewInstance.GetComponent<PlacementValidator>();
 
