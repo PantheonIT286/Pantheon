@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5245039069931423767}
   - component: {fileID: 1576246836219766988}
   - component: {fileID: 8583220955306903935}
+  - component: {fileID: 7732285855576359112}
   m_Layer: 0
   m_Name: SlowEnemy
   m_TagString: Enemy
@@ -131,6 +132,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 2e0c37f5dd40a80419c209ac65fdf20a, type: 2}
   pathManager: {fileID: 0}
   moveSpeed: 5
+<<<<<<< HEAD
 --- !u!1001 &8646416196935197892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,3 +195,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 337a8cb9951b4a940afa2baf06ca7eb3, type: 3}
   m_PrefabInstance: {fileID: 8646416196935197892}
   m_PrefabAsset: {fileID: 0}
+=======
+--- !u!114 &7732285855576359112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069591052389716506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f9dec2b1c00044e96187b2a711d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 100
+>>>>>>> c728ace731797a7af9ee6d87fcf149c40d872592

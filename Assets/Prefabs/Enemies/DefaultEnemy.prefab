@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9212082869265680878}
   - component: {fileID: 2648586089921049691}
   - component: {fileID: 6231743361081962249}
+  - component: {fileID: 111879491582427867}
   m_Layer: 0
   m_Name: DefaultEnemy
   m_TagString: Enemy
@@ -131,6 +132,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: bbb4d85f77ead9843ab60a4ee03fb612, type: 2}
   pathManager: {fileID: 0}
   moveSpeed: 5
+<<<<<<< HEAD
 --- !u!1001 &8752730205999943695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,3 +195,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 38f100aba876cf7468e4a36346f919f7, type: 3}
   m_PrefabInstance: {fileID: 8752730205999943695}
   m_PrefabAsset: {fileID: 0}
+=======
+--- !u!114 &111879491582427867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2396445119647801490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f9dec2b1c00044e96187b2a711d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 100
+>>>>>>> c728ace731797a7af9ee6d87fcf149c40d872592
