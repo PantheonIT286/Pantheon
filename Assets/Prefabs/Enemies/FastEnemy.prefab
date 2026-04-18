@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2628225483092120833}
   - component: {fileID: 7598413097798319560}
   - component: {fileID: 2328080998769173888}
+  - component: {fileID: 2091181682665565991}
   m_Layer: 0
   m_Name: FastEnemy
   m_TagString: Enemy
@@ -130,3 +131,16 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: b9357b1a2b2d19c47847ceb03f235b87, type: 2}
   pathManager: {fileID: 0}
   moveSpeed: 5
+--- !u!114 &2091181682665565991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064290807022712382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f9dec2b1c00044e96187b2a711d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 100

@@ -2,20 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-<<<<<<< HEAD
-=======
 using TMPro;
->>>>>>> Alex
 
-/*
-Purpose of this script is to create the Wave Manager. If you want to edit/create waves, go to the WaveManager
-GameObject within the easy scene and you'll find it under the script component. To start a wave in-game, press
-Space and the wave should begin to spawn. You can't spawn a wave while one is currently spawning.
-*/
 public class WaveSpawner : MonoBehaviour
 {
     [System.Serializable]
-    public class EnemyGroup // This defines a specific "batch" of enemies
+    public class EnemyGroup
     {
         public EnemyData enemyType;
         public int count;
@@ -23,14 +15,14 @@ public class WaveSpawner : MonoBehaviour
     }
 
     [System.Serializable]
-    public class Wave // This defines a collection of batches
+    public class Wave
     {
-        public string waveName; // Useful for organization
+        public string waveName;
         public List<EnemyGroup> enemyGroups;
     }
 
     [Header("Setup References")]
-    public List<Wave> waves; 
+    public List<Wave> waves;
     public Transform spawnPoint;
     public PathManager path;
 
@@ -52,13 +44,11 @@ public class WaveSpawner : MonoBehaviour
     {
         isSpawning = true;
         Wave currentWave = waves[currentWaveIndex];
-        Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
-<<<<<<< HEAD
-=======
-        waveInfo.text = "Starting " + currentWave.waveName;
->>>>>>> Alex
 
-        // Now we loop through each GROUP in the wave
+        Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
+        if (waveInfo != null)
+            waveInfo.text = "Starting " + currentWave.waveName;
+
         foreach (EnemyGroup group in currentWave.enemyGroups)
         {
             for (int i = 0; i < group.count; i++)
@@ -66,7 +56,7 @@ public class WaveSpawner : MonoBehaviour
                 if (group.enemyType.prefab == null) yield break;
 
                 GameObject enemyGO = Instantiate(group.enemyType.prefab, spawnPoint.position, Quaternion.identity);
-                
+
                 EnemyMovement moveScript = enemyGO.GetComponent<EnemyMovement>();
                 if (moveScript != null)
                 {
@@ -76,17 +66,15 @@ public class WaveSpawner : MonoBehaviour
 
                 yield return new WaitForSeconds(group.spawnRate);
             }
-            
-            // Optional: Wait a second or two between different types of enemies
-            yield return new WaitForSeconds(1.0f); 
+
+            yield return new WaitForSeconds(1.0f);
         }
 
         currentWaveIndex++;
         isSpawning = false;
+
         Debug.Log("<color=green>Wave Manager:</color> Wave complete.");
-<<<<<<< HEAD
-=======
-        waveInfo.text = "Wave Complete";
->>>>>>> Alex
+        if (waveInfo != null)
+            waveInfo.text = "Wave Complete";
     }
 }
