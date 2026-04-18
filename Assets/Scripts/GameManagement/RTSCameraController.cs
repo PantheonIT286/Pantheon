@@ -48,7 +48,7 @@ public class RTSCameraController : MonoBehaviour
 
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         transform.position += move * moveSpeed * Time.deltaTime;
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             GameStateManager.Instance.SetState(GameState.PossessionMode);
         }

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8435084712362886342}
   - component: {fileID: 1264464586647424424}
   - component: {fileID: 1741052574206529568}
-  - component: {fileID: 1089117480162041301}
-  - component: {fileID: 4066846649923734853}
+  - component: {fileID: 6893539732269096127}
+  - component: {fileID: 3240143951996048535}
   m_Layer: 9
   m_Name: Tower_Preview
   m_TagString: Untagged
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 8723280828026273152}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.06, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 1, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -91,6 +91,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1741052574206529568
 BoxCollider:
@@ -113,7 +114,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1089117480162041301
+--- !u!114 &6893539732269096127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,17 +123,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8723280828026273152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8e5cb9102dec440b41f640304f9e9d, type: 3}
+  m_Script: {fileID: 11500000, guid: fd0d3568a8399834680642b7f66718a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementValidator
   validGroundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1
   blockedLayers:
     serializedVersion: 2
-    m_Bits: 448
-  checkRadius: 1
---- !u!114 &4066846649923734853
+    m_Bits: 0
+  checkRadius: 3
+--- !u!114 &3240143951996048535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,8 +142,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8723280828026273152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b241f559ae277db40892dd537e7a6ea2, type: 3}
+  m_Script: {fileID: 11500000, guid: 45ae744bdf483f447ab5b4f04588a4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementPreview
-  validator: {fileID: 1089117480162041301}
+  validator: {fileID: 6893539732269096127}
   previewRenderer: {fileID: 1264464586647424424}

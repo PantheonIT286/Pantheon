@@ -32,18 +32,19 @@ public class WaveSpawner : MonoBehaviour
     public PathManager path;
 
     public TextMeshProUGUI waveInfo; // UI text component to display wave information.
+    public TextMeshProUGUI waveSpawnerInfo; // UI text component to display spawner information.
 
     private int currentWaveIndex = 0;
     private bool isSpawning = false;
 
-    void Update()
+    /*void Update()
     {
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && !isSpawning)
         {
             Debug.Log("Space Bar Pressed.");
             StartCoroutine(SpawnWave());
         }
-    }
+    }*/
 
     IEnumerator SpawnWave()
     {
@@ -78,6 +79,19 @@ public class WaveSpawner : MonoBehaviour
         currentWaveIndex++;
         isSpawning = false;
         Debug.Log("<color=green>Wave Manager:</color> Wave complete.");
-        waveInfo.text = "Wave Complete";
+        waveInfo.text = "Wave Clear";
+        waveSpawnerInfo.text = "Start";
+    }
+
+    // This function can be called by a UI button to start the wave.    
+    public void startWave()
+    {
+        if (!isSpawning)
+        {
+            Debug.Log("Button Pressed.");
+            StartCoroutine(SpawnWave());
+            waveSpawnerInfo.text = "Wait";
+        }
+    
     }
 }

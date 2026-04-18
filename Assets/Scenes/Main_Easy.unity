@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
   gold: 100
+  currencyText: {fileID: 0}
 --- !u!4 &308723571
 Transform:
   m_ObjectHideFlags: 0
@@ -1181,7 +1182,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf16ef20f3c65344940cb543354578f, type: 2}
+  - {fileID: 2100000, guid: 1a1caea71e0d0f747bf187ec965dee69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1281,6 +1282,7 @@ MonoBehaviour:
       spawnRate: 1
   spawnPoint: {fileID: 1849583875}
   path: {fileID: 2134455501}
+  waveInfo: {fileID: 0}
 --- !u!4 &1730601416
 Transform:
   m_ObjectHideFlags: 0
