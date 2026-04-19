@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public enum GameState
@@ -9,6 +8,7 @@ public enum GameState
 
 public class GameStateManager : MonoBehaviour
 {
+    public GameObject tempFPSPanel; // TEMP
     public static GameStateManager Instance;
 
     public static System.Action<GameState> OnGameStateChanged;
@@ -56,16 +56,20 @@ public class GameStateManager : MonoBehaviour
                 inputActions.RTS.Enable();
                 inputActions.FPS.Disable();
 
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                tempFPSPanel.SetActive(false); // TEMP
+
+                //Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
             }
             else
             {
                 inputActions.RTS.Disable();
                 inputActions.FPS.Enable();
 
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                tempFPSPanel.SetActive(true); // TEMP
+
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
             }
         }
     }

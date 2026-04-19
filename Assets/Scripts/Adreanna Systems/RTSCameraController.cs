@@ -41,17 +41,8 @@ public class RTSCameraController : MonoBehaviour
         if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
             return;
 
-<<<<<<< HEAD:Assets/Scripts/GameManagement/RTSCameraController.cs
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        transform.position += move * moveSpeed * Time.deltaTime;
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            GameStateManager.Instance.SetState(GameState.PossessionMode);
-        }
-=======
         HandleMovement();
 
->>>>>>> c728ace731797a7af9ee6d87fcf149c40d872592:Assets/Scripts/Adreanna Systems/RTSCameraController.cs
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             TryPossess();

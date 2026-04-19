@@ -45,15 +45,10 @@ public class WaveSpawner : MonoBehaviour
     {
         isSpawning = true;
         Wave currentWave = waves[currentWaveIndex];
-<<<<<<< HEAD
-        Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
-        waveInfo.text = currentWave.waveName;
-=======
->>>>>>> c728ace731797a7af9ee6d87fcf149c40d872592
 
         Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
         if (waveInfo != null)
-            waveInfo.text = "Starting " + currentWave.waveName;
+            waveInfo.text = currentWave.waveName;
 
         foreach (EnemyGroup group in currentWave.enemyGroups)
         {
@@ -80,8 +75,8 @@ public class WaveSpawner : MonoBehaviour
         isSpawning = false;
 
         Debug.Log("<color=green>Wave Manager:</color> Wave complete.");
-<<<<<<< HEAD
-        waveInfo.text = "Wave Clear";
+        if (waveInfo != null)
+            waveInfo.text = "Wave Clear";
         waveSpawnerInfo.text = "Start";
     }
 
@@ -94,10 +89,5 @@ public class WaveSpawner : MonoBehaviour
             StartCoroutine(SpawnWave());
             waveSpawnerInfo.text = "Wait";
         }
-    
-=======
-        if (waveInfo != null)
-            waveInfo.text = "Wave Complete";
->>>>>>> c728ace731797a7af9ee6d87fcf149c40d872592
     }
 }

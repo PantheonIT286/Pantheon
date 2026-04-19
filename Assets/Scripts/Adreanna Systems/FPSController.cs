@@ -101,4 +101,13 @@ public class FPSController : MonoBehaviour
 
         GameStateManager.Instance.SetState(GameState.StrategyMode);
     }
+
+    //temp
+    public void StrategyMode()
+    {
+        if (GameStateManager.Instance.CurrentState != GameState.PossessionMode)
+            return;
+
+        GameStateManager.Instance.SetState(GameState.StrategyMode);
+    }
 }
