@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 230721936903118445}
   - component: {fileID: 8969992467509057563}
   - component: {fileID: 6440297257521649164}
+<<<<<<< HEAD
   m_Layer: 6
+=======
+  m_Layer: 0
+>>>>>>> 3bed726a0c1d1a28d685af2d9835171235dd0878
   m_Name: TowerPlacement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +53,11 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4102875179326678391}
+<<<<<<< HEAD
   m_Enabled: 0
+=======
+  m_Enabled: 1
+>>>>>>> 3bed726a0c1d1a28d685af2d9835171235dd0878
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

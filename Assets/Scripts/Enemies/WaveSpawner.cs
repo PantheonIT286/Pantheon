@@ -27,7 +27,10 @@ public class WaveSpawner : MonoBehaviour
     public PathManager path;
 
     public TextMeshProUGUI waveInfo; // UI text component to display wave information.
+<<<<<<< HEAD
     public TextMeshProUGUI waveSpawnerInfo; // UI text component to display spawner information.
+=======
+>>>>>>> 3bed726a0c1d1a28d685af2d9835171235dd0878
 
     private int currentWaveIndex = 0;
     private bool isSpawning = false;
@@ -45,6 +48,11 @@ public class WaveSpawner : MonoBehaviour
     {
         isSpawning = true;
         Wave currentWave = waves[currentWaveIndex];
+<<<<<<< HEAD
+=======
+        Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
+        waveInfo.text = currentWave.waveName;
+>>>>>>> 3bed726a0c1d1a28d685af2d9835171235dd0878
 
         Debug.Log($"<color=cyan>Wave Manager:</color> Starting {currentWave.waveName}");
         if (waveInfo != null)

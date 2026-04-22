@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Images.meta
 guid: 8e7ee75769fcbe74ca70e7242cc5a5cc
+========
+guid: f376183c152c29647ab86f36ee51b4e5
+>>>>>>>> 3bed726a0c1d1a28d685af2d9835171235dd0878:Assets/Models/GameArea/Environment (1).meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

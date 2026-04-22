@@ -1,13 +1,5 @@
 using UnityEngine;
 
-/*
-Purpose of this script is to have the enemy move around the level by moving from one checkpoint to
-the next. When it reaches the end it will call the Die() function which tells the EconomyManager to
-add gold. Right now since there's no way of killing enemies, when it reaches the end it will act
-like it's been "killed" and drop the gold. That part needs to be updated to account for towers killing enemies,
-and not award gold if an enemy reaches the end.
-*/
-
 public class EnemyMovement : MonoBehaviour
 {
     public EnemyData data;
@@ -15,67 +7,115 @@ public class EnemyMovement : MonoBehaviour
     private int currentHealth;
 
     public PathManager pathManager;
-    public float moveSpeed = 5f;
-
     private int waypointIndex = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    //When the enemy dies, have it udpate the Gold Variable.
-    void Die()
-    {
-        EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
 
-        if (economy != null)
-        {
-            economy.AddGold(data.goldReward);
-        }
+    // Diverging Path Variables
+    private Transform targetTower;
+    private bool isAttacking = false;
+    private float nextCheckTime;
 
-        Destroy(gameObject);
-    }
-    
     void Start()
     {
-        //Initial Variables
         currentSpeed = data.speed;
         currentHealth = data.health;
 
-        //Makes sure enemies don't spawn underground
+        // Grounding Raycast
         RaycastHit hit;
         if (Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out hit, 10f))
         {
-
             float groundedY = hit.point.y;
-
             transform.position = new Vector3(transform.position.x, groundedY, transform.position.z);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (waypointIndex < pathManager.points.Length)
+        if (isAttacking)
         {
-            Vector3 targetPos = pathManager.points[waypointIndex].position;
-
-            targetPos.y = transform.position.y;
-            
-            //Move towards target checkpoint
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                targetPos,
-                currentSpeed * Time.deltaTime
-            );
-
-            //Check if enemy has arrived at destination
-            if (Vector3.Distance(transform.position, targetPos) < 0.1f)
-            {
-                waypointIndex++;
-            }
+            MoveTowardsTower();
         }
         else
         {
-            //Call the Die Function.
-            Die();
+            // 1. Look for towers if it's time to check
+            CheckForNearbyTowers();
+
+            // 2. Original Path Following Logic
+            if (waypointIndex < pathManager.points.Length)
+            {
+                Vector3 targetPos = pathManager.points[waypointIndex].position;
+                targetPos.y = transform.position.y;
+
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    targetPos,
+                    currentSpeed * Time.deltaTime
+                );
+
+                if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+                {
+                    waypointIndex++;
+                }
+            }
+            else
+            {
+                // Reached the end: No gold awarded for escaping!
+                Die(false); 
+            }
         }
+    }
+
+    void CheckForNearbyTowers()
+    {
+        if (Time.time < nextCheckTime) return;
+        nextCheckTime = Time.time + 1f; // Check once per second
+
+        // Roll for aggression based on EnemyData
+        if (Random.value > data.aggressionChance) return;
+
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
+        {
+            float dist = Vector3.Distance(transform.position, tower.transform.position);
+            if (dist <= data.detectionRadius)
+            {
+                targetTower = tower.transform;
+                isAttacking = true;
+                break;
+            }
+        }
+    }
+
+    void MoveTowardsTower()
+    {
+        if (targetTower == null)
+        {
+            isAttacking = false;
+            return;
+        }
+
+        Vector3 dir = targetTower.position - transform.position;
+        dir.y = 0; // Keep them on the ground
+        transform.position = Vector3.MoveTowards(transform.position, targetTower.position, currentSpeed * Time.deltaTime);
+
+        // Placeholder for attacking logic
+        if (Vector3.Distance(transform.position, targetTower.position) < 0.5f)
+        {
+            Debug.Log($"{data.enemyName} is attacking the tower!");
+        }
+    }
+
+    // Updated Die function to handle gold rewards properly
+    public void Die(bool giveGold)
+    {
+        if (giveGold)
+        {
+            EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
+            if (economy != null)
+            {
+                economy.AddGold(data.goldReward);
+            }
+        }
+
+        Destroy(gameObject);
     }
 }
