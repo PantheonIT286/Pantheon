@@ -3,7 +3,9 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;
+
     private int currentHealth;
+    private bool isDead = false;
 
     void Start()
     {
@@ -12,9 +14,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        if (isDead) return;
 
-        Debug.Log("Enemy took damage: " + amount);
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        Debug.Log("Enemy took damage: " + amount + " | Remaining: " + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -24,7 +29,13 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
+        isDead = true;
+
         Debug.Log("Enemy died");
+
+        // GameManager.Instance.AddGold(10);
+
         Destroy(gameObject);
     }
 }
