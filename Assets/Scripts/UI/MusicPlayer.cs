@@ -3,25 +3,34 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 public class MusicPlayer : MonoBehaviour{
-    public AudioSource musicAudio;
-    public TextMeshProUGUI musicText;
+    public AudioSource musicAudio; // Audio component to play music
 
+    // GameObject component to set music sprite
+    public GameObject musicOn;
+    public GameObject musicOff;
+
+
+    // sets icon to musicOn sprite
     private void Start(){
-        musicText.text = "Music Off";
+        musicOn.SetActive(false);
+        musicOff.SetActive(true);
     }
     
-    public void playMusic() {
+    // ensures music stops playing
+    public void stopMusic() {
         if (musicAudio.isPlaying) {
             musicAudio.Stop();
-            musicText.text = "Music Off";
-
+            musicOn.SetActive(false);
+            musicOff.SetActive(true);
         } else {
-            stopMusic();
+            playMusic();
         }
     }
 
-    private void stopMusic(){
+    // ensures music starts playing
+    private void playMusic(){
         musicAudio.Play();
-        musicText.text = "Music On";
+        musicOn.SetActive(true);
+        musicOff.SetActive(false);
     }
 }
