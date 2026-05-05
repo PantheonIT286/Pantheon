@@ -13,4 +13,6 @@ public class EnemyData : ScriptableObject
     public int health;
     public int goldReward;
     public GameObject prefab; // The actual 3D model/prefab
+    public float aggressionChance; // 0.0 to 1.0 (0.2 = 20% chance to deviate)
+    public float detectionRadius;  // How far the enemy can "see" a tower
 }

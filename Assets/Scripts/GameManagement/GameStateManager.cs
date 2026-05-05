@@ -8,6 +8,7 @@ public enum GameState
 
 public class GameStateManager : MonoBehaviour
 {
+    public GameObject tempFPSPanel; // TEMP
     public static GameStateManager Instance;
 
     public static System.Action<GameState> OnGameStateChanged;
@@ -35,33 +36,41 @@ public class GameStateManager : MonoBehaviour
         inputActions = InputManager.Instance.InputActions;
 
         SetState(GameState.StrategyMode);
+
+        Debug.Log("RTS Enabled: " + inputActions.RTS.enabled);
+        Debug.Log("FPS Enabled: " + inputActions.FPS.enabled);
     }
 
     public void SetState(GameState newState)
     {
-        if (CurrentState == newState) return;
+        Debug.Log("STATE CHANGE: " + newState);
 
         CurrentState = newState;
 
         OnGameStateChanged?.Invoke(newState);
 
-        if (inputActions == null) return;
-
-        if (newState == GameState.StrategyMode)
+        if (inputActions != null)
         {
-            inputActions.RTS.Enable();
-            inputActions.FPS.Disable();
+            if (newState == GameState.StrategyMode)
+            {
+                inputActions.RTS.Enable();
+                inputActions.FPS.Disable();
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            inputActions.RTS.Disable();
-            inputActions.FPS.Enable();
+                tempFPSPanel.SetActive(false); // TEMP
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+                //Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
+            }
+            else
+            {
+                inputActions.RTS.Disable();
+                inputActions.FPS.Enable();
+
+                tempFPSPanel.SetActive(true); // TEMP
+
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
+            }
         }
     }
 }
