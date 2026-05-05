@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8435084712362886342}
   - component: {fileID: 1264464586647424424}
   - component: {fileID: 1741052574206529568}
-  - component: {fileID: 1089117480162041301}
-  - component: {fileID: 4066846649923734853}
+  - component: {fileID: 3291280143589448824}
+  - component: {fileID: 4406045659844037903}
   m_Layer: 9
   m_Name: Tower_Preview
   m_TagString: Untagged
@@ -91,6 +91,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1741052574206529568
 BoxCollider:
@@ -113,7 +114,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1089117480162041301
+--- !u!114 &3291280143589448824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,27 +123,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8723280828026273152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8e5cb9102dec440b41f640304f9e9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 37ab03323bc2d244fb3cdeb96efd5aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementPreview
+  validator: {fileID: 4406045659844037903}
+  previewRenderer: {fileID: 1264464586647424424}
+--- !u!114 &4406045659844037903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723280828026273152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7244ce523126fe04ca2083813eac36fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementValidator
   validGroundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   blockedLayers:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 256
   checkRadius: 1
---- !u!114 &4066846649923734853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8723280828026273152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b241f559ae277db40892dd537e7a6ea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlacementPreview
-  validator: {fileID: 1089117480162041301}
-  previewRenderer: {fileID: 1264464586647424424}

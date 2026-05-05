@@ -6,19 +6,35 @@ public class Possessable : MonoBehaviour
     public Transform cameraAnchor;
     public float transitionTime = 0.3f;
 
+    private void Awake()
+    {
+        if (cameraAnchor == null)
+        {
+            cameraAnchor = transform.Find("CameraAnchor");
+        }
+    }
+
     public void EnterPossession()
     {
+        Debug.Log("ENTER POSSESSION on: " + name + " | Frame: " + Time.frameCount);
+        Debug.Log($"{name} anchor = {cameraAnchor}");
+        if (cameraAnchor == null)
+        {
+            Debug.LogError($"{name}: Missing cameraAnchor!");
+            return;
+        }
+
+        Transform playerRoot = CameraManager.Instance.fpsCamera.transform.parent;
+
         GameStateManager.Instance.StartCoroutine(
-            SmoothTransition(GameStateManager.Instance.fpsCamera.transform)
+            SmoothTransition(playerRoot)
         );
     }
 
-    IEnumerator SmoothTransition(Transform cam)
+    IEnumerator SmoothTransition(Transform playerRoot)
     {
-        GameStateManager.Instance.SetState(GameState.PossessionMode);
-
-        Vector3 startPos = cam.position;
-        Quaternion startRot = cam.rotation;
+        Vector3 startPos = playerRoot.position;
+        Quaternion startRot = playerRoot.rotation;
 
         float elapsed = 0f;
 
@@ -27,13 +43,15 @@ public class Possessable : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / transitionTime;
 
-            cam.position = Vector3.Lerp(startPos, cameraAnchor.position, t);
-            cam.rotation = Quaternion.Slerp(startRot, cameraAnchor.rotation, t);
+            playerRoot.position = Vector3.Lerp(startPos, cameraAnchor.position, t);
+            playerRoot.rotation = Quaternion.Slerp(startRot, cameraAnchor.rotation, t);
 
             yield return null;
         }
 
-        cam.position = cameraAnchor.position;
-        cam.rotation = cameraAnchor.rotation;
+        playerRoot.position = cameraAnchor.position;
+        playerRoot.rotation = cameraAnchor.rotation;
+
+        GameStateManager.Instance.SetState(GameState.PossessionMode);
     }
 }

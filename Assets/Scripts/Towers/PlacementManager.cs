@@ -1,11 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlacementManager : MonoBehaviour
 {
     public GameObject previewPrefab;
-    public GameObject finalTowerPrefab;
     private GameObject previewInstance;
+
+    public List<GameObject> towerPrefabs;
+
+    public enum TowerType
+    {
+        Tower1,
+        Tower2,
+        Tower3,
+        Tower4,
+        Tower5
+    }
+
+    public TowerType selectedTowerType;
 
     private Camera strategyCamera;
     private InputSystem_Actions inputActions;
@@ -13,44 +26,92 @@ public class PlacementManager : MonoBehaviour
 
     private void Start()
     {
-        strategyCamera = GameStateManager.Instance.strategyCamera.GetComponent<Camera>();
+        if (previewPrefab == null)
+        {
+            Debug.LogError("Preview Prefab not assigned!");
+            return;
+        }
+
+        if (CameraManager.Instance == null)
+        {
+            Debug.LogError("CameraManager missing!");
+            return;
+        }
+
+        strategyCamera = CameraManager.Instance.strategyCamera.GetComponent<Camera>();
+
+        if (InputManager.Instance == null)
+        {
+            Debug.LogError("InputManager missing!");
+            return;
+        }
+
         inputActions = InputManager.Instance.InputActions;
 
         previewInstance = Instantiate(previewPrefab);
+
+        inputActions.RTS.Place.performed += OnPlace;
     }
 
-    void Update()
+    private void OnDisable()
     {
+        if (inputActions != null)
+            inputActions.RTS.Place.performed -= OnPlace;
+    }
+
+    private void Update()
+    {
+        if (GameStateManager.Instance == null)
+            return;
+
         if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
             return;
 
         MovePreview();
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-            TryPlaceTower();
     }
 
     void MovePreview()
     {
         Ray ray = strategyCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, LayerMask.GetMask("Ground")))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f,
+            LayerMask.GetMask("Ground", "Buildable")))
         {
-            Vector3 snappedPosition = hit.point;
-
-            snappedPosition.y = 0.5f; 
-
-            previewInstance.transform.position = snappedPosition;
+            Vector3 pos = hit.point;
+            pos.y = 0.5f;
+            previewInstance.transform.position = pos;
         }
     }
 
+<<<<<<< HEAD
      public void TryPlaceTower()
+=======
+    void OnPlace(InputAction.CallbackContext ctx)
+    {
+        if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
+            return;
+
+        TryPlaceTower();
+    }
+
+    void TryPlaceTower()
+>>>>>>> Adreanna
     {
         PlacementValidator validator = previewInstance.GetComponent<PlacementValidator>();
 
         if (validator != null && validator.IsValid())
         {
-            Instantiate(finalTowerPrefab, previewInstance.transform.position, Quaternion.identity);
+            int index = (int)selectedTowerType;
+
+            if (index >= 0 && index < towerPrefabs.Count)
+            {
+                Instantiate(
+                    towerPrefabs[index],
+                    previewInstance.transform.position,
+                    Quaternion.identity
+                );
+                FindFirstObjectByType<RTSCameraController>()?.NotifyPlacement();
+            }
         }
     }
 }

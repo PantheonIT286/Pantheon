@@ -10,13 +10,11 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance;
 
+    public static System.Action<GameState> OnGameStateChanged;
+
     public GameState CurrentState { get; private set; }
 
     private InputSystem_Actions inputActions;
-
-    [Header("Cameras")]
-    public GameObject strategyCamera;
-    public GameObject fpsCamera;
 
     private void Awake()
     {
@@ -35,28 +33,35 @@ public class GameStateManager : MonoBehaviour
         }
 
         inputActions = InputManager.Instance.InputActions;
+
         SetState(GameState.StrategyMode);
     }
 
     public void SetState(GameState newState)
     {
+        if (CurrentState == newState) return;
+
         CurrentState = newState;
+
+        OnGameStateChanged?.Invoke(newState);
+
+        if (inputActions == null) return;
 
         if (newState == GameState.StrategyMode)
         {
-            strategyCamera.SetActive(true);
-            fpsCamera.SetActive(false);
-
             inputActions.RTS.Enable();
             inputActions.FPS.Disable();
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
-            strategyCamera.SetActive(false);
-            fpsCamera.SetActive(true);
-
             inputActions.RTS.Disable();
             inputActions.FPS.Enable();
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
