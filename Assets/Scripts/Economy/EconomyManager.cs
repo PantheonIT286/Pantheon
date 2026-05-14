@@ -5,10 +5,13 @@ public class EconomyManager : MonoBehaviour
 {
     public int gold = 100;
     public TextMeshProUGUI currencyText;
-    public int towerPlacementCost = 500;
-    public int unitPlacementCost = 20;
-    public int enemyKillReward = 3;
-    public float killRewardMultiplier = 1f;
+    [SerializeField] private int towerPlacementCost = 500;
+    [SerializeField] private int unitPlacementCost = 20;
+    [SerializeField] private int enemyKillReward = 3;
+    [SerializeField] private float killRewardMultiplier = 1f;
+
+    public int TowerPlacementCost => towerPlacementCost;
+    public int UnitPlacementCost => unitPlacementCost;
     
     void Start()
     {

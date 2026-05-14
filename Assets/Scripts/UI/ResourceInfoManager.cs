@@ -16,11 +16,13 @@ public class ResourceInfoManager : MonoBehaviour{
         private GameObject towerSelected; // Variable to keep track of the currently selected tower
 
         private GameObject spellSelected; // Variable to keep track of the currently selected spell
+        private EconomyManager economyManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start(){
         // Initialize the resourceInfoPanels array with the child GameObjects of the parentGameObject
         resourceInfoPanels = new GameObject[transform.childCount];
+        economyManager = FindFirstObjectByType<EconomyManager>();
         hideAllPanels(); // Call the method to hide all panels at the start
     }
 
@@ -52,14 +54,13 @@ public class ResourceInfoManager : MonoBehaviour{
                 return;
             }
 
-            EconomyManager economy = FindFirstObjectByType<EconomyManager>();
-            if (economy == null)
+            if (economyManager == null)
             {
                 Debug.LogWarning("EconomyManager not found. Cannot purchase tower.");
                 return;
             }
 
-            if (!economy.TrySpendGold(economy.towerPlacementCost))
+            if (!economyManager.TrySpendGold(economyManager.TowerPlacementCost))
             {
                 Debug.Log("Not enough gold to purchase a tower.");
                 return;

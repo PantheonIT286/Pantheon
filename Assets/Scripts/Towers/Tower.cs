@@ -7,6 +7,7 @@ public class Tower: MonoBehaviour{
     public float  coolDown = 0;
     int dif;
     private PlacementManager placementManager;
+    private EconomyManager economyManager;
     private GameObject TowerTile;
     public GameObject unitPrefab;
 
@@ -15,6 +16,9 @@ public class Tower: MonoBehaviour{
         TowerTile = GameObject.Find("ValidTowerPlacement");
             if (placementManager == null){
             placementManager = FindFirstObjectByType<PlacementManager>();
+        }
+        if (economyManager == null){
+            economyManager = FindFirstObjectByType<EconomyManager>();
         }
     }
     public void PlaceTower(){
@@ -34,14 +38,13 @@ public class Tower: MonoBehaviour{
     }
 
     public void SpawnUnit(){
-        EconomyManager economy = FindFirstObjectByType<EconomyManager>();
-        if (economy == null)
+        if (economyManager == null)
         {
             Debug.LogWarning("EconomyManager not found. Cannot spawn unit.");
             return;
         }
 
-        if (!economy.TrySpendGold(economy.unitPlacementCost))
+        if (!economyManager.TrySpendGold(economyManager.UnitPlacementCost))
         {
             Debug.Log("Not enough gold to spawn unit.");
             return;
