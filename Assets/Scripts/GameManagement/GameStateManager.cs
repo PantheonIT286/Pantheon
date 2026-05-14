@@ -8,15 +8,14 @@ public enum GameState
 
 public class GameStateManager : MonoBehaviour
 {
+    public GameObject tempFPSPanel; // TEMP
     public static GameStateManager Instance;
+
+    public static System.Action<GameState> OnGameStateChanged;
 
     public GameState CurrentState { get; private set; }
 
     private InputSystem_Actions inputActions;
-
-    [Header("Cameras")]
-    public GameObject strategyCamera;
-    public GameObject fpsCamera;
 
     private void Awake()
     {
@@ -35,28 +34,43 @@ public class GameStateManager : MonoBehaviour
         }
 
         inputActions = InputManager.Instance.InputActions;
+
         SetState(GameState.StrategyMode);
+
+        Debug.Log("RTS Enabled: " + inputActions.RTS.enabled);
+        Debug.Log("FPS Enabled: " + inputActions.FPS.enabled);
     }
 
     public void SetState(GameState newState)
     {
+        Debug.Log("STATE CHANGE: " + newState);
+
         CurrentState = newState;
 
-        if (newState == GameState.StrategyMode)
-        {
-            strategyCamera.SetActive(true);
-            fpsCamera.SetActive(false);
+        OnGameStateChanged?.Invoke(newState);
 
-            inputActions.RTS.Enable();
-            inputActions.FPS.Disable();
-        }
-        else
+        if (inputActions != null)
         {
-            strategyCamera.SetActive(false);
-            fpsCamera.SetActive(true);
+            if (newState == GameState.StrategyMode)
+            {
+                inputActions.RTS.Enable();
+                inputActions.FPS.Disable();
 
-            inputActions.RTS.Disable();
-            inputActions.FPS.Enable();
+                tempFPSPanel.SetActive(false); // TEMP
+
+                //Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
+            }
+            else
+            {
+                inputActions.RTS.Disable();
+                inputActions.FPS.Enable();
+
+                tempFPSPanel.SetActive(true); // TEMP
+
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
+            }
         }
     }
 }

@@ -64,8 +64,6 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -87,7 +85,6 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -127,10 +124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlacementValidator
   validGroundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   blockedLayers:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 0
   checkRadius: 1
 --- !u!114 &4066846649923734853
 MonoBehaviour:
