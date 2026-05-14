@@ -4,10 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-<<<<<<< HEAD
-  - Enemy
-=======
->>>>>>> 3bed726a0c1d1a28d685af2d9835171235dd0878
   - Tower
   layers:
   - Default
