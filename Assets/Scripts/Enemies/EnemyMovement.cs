@@ -112,7 +112,7 @@ public class EnemyMovement : MonoBehaviour
             EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
             if (economy != null)
             {
-                economy.AddGold(data.goldReward);
+                economy.AddEnemyKillGold();
             }
         }
 

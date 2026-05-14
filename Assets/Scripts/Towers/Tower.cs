@@ -34,8 +34,27 @@ public class Tower: MonoBehaviour{
     }
 
     public void SpawnUnit(){
+        EconomyManager economy = FindFirstObjectByType<EconomyManager>();
+        if (economy == null)
+        {
+            Debug.LogWarning("EconomyManager not found. Cannot spawn unit.");
+            return;
+        }
+
+        if (!economy.TrySpendGold(economy.unitPlacementCost))
+        {
+            Debug.Log("Not enough gold to spawn unit.");
+            return;
+        }
+
+        if (unitPrefab == null || TowerTile == null)
+        {
+            Debug.LogWarning("Missing unit prefab or tower tile for spawning.");
+            return;
+        }
+
         Vector3 tilePos = TowerTile.transform.position;
-        GameObject newUnit = Instantiate(unitPrefab, tilePos, Quaternion.identity);
+        Instantiate(unitPrefab, tilePos, Quaternion.identity);
     }
 
     private void Update(){

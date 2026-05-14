@@ -46,6 +46,25 @@ public class ResourceInfoManager : MonoBehaviour{
         }
 
         public void TowersPurchaseButton(){
+            if (towerSelected == null)
+            {
+                Debug.LogWarning("No tower selected for purchase.");
+                return;
+            }
+
+            EconomyManager economy = FindFirstObjectByType<EconomyManager>();
+            if (economy == null)
+            {
+                Debug.LogWarning("EconomyManager not found. Cannot purchase tower.");
+                return;
+            }
+
+            if (!economy.TrySpendGold(economy.towerPlacementCost))
+            {
+                Debug.Log("Not enough gold to purchase a tower.");
+                return;
+            }
+
             // Check the name of the tower button that was clicked and perform the purchase action accordingly
             if (towerSelected.name == "Tower1"){
                 Debug.Log("Purchasing Tower 1");
