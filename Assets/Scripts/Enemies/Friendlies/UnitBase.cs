@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class UnitBase : MonoBehaviour { 
@@ -8,7 +9,21 @@ public class UnitBase : MonoBehaviour {
     public float coolDown = 0;
     int dif;
 
+    protected virtual void Start()
+    {
+        dif = GameManager.Instance.DifficultyScale;
+    }
 
+    public virtual void Initialize(int startHealth, float startCooldown)
+    {
+        health = startHealth/ dif; // divides because friendly units are weaker on harder difficulties
+        coolDown = startCooldown*dif;
+    }
+
+    public virtual void SpawnUnit()
+    {
+        Instantiate(unitPrefab, SpawnPoint, Quaternion.identity);
+    }
 
 
 }

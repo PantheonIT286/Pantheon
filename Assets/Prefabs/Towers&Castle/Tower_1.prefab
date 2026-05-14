@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1797388552587006539}
   - component: {fileID: 8668911773211204269}
   - component: {fileID: 4659428266615594924}
+  - component: {fileID: -5118916796896863029}
   m_Layer: 7
   m_Name: Tower_1
   m_TagString: Tower1
@@ -88,6 +89,21 @@ MonoBehaviour:
   fireRate: 1
   firePoint: {fileID: 8393724877914033095}
   projectilePrefab: {fileID: 469212884136571393, guid: 562626cc02f00ba4399e5b72107f4045, type: 3}
+--- !u!114 &-5118916796896863029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838527780326676078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f100b9da77148b4090f0d288a5f9ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower
+  Health: 1500
+  coolDown: 0
+  unitPrefab: {fileID: 1838527780326676078}
 --- !u!1 &3506208359531382328
 GameObject:
   m_ObjectHideFlags: 0
