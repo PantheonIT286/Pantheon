@@ -42,11 +42,6 @@ public class RTSCameraController : MonoBehaviour
             return;
 
         HandleMovement();
-
-        if (Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            TryPossess();
-        }
     }
 
     void HandleMovement()
@@ -55,7 +50,7 @@ public class RTSCameraController : MonoBehaviour
         transform.position += move * moveSpeed * Time.deltaTime;
     }
 
-    void TryPossess()
+    public void TryPossess(GameObject tower)
     {
         Debug.Log("TryPossess CALLED");
 
@@ -65,18 +60,10 @@ public class RTSCameraController : MonoBehaviour
             return;
         }
 
-        Camera cam = CameraManager.Instance.strategyCamera.GetComponent<Camera>();
-
-        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        Possessable possessable = tower.GetComponent<Possessable>();
+        if (possessable != null)
         {
-            Possessable possessable = hit.collider.GetComponentInParent<Possessable>();
-
-            if (possessable != null)
-            {
-                possessable.EnterPossession();
-            }
+            possessable.EnterPossession();
         }
     }
 

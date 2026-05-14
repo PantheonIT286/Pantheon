@@ -24,12 +24,17 @@ public class PlacementManager : MonoBehaviour
     private InputSystem_Actions inputActions;
     internal static readonly object Instance;
 
+    // flag to track if a tower has been purchased
+    private bool towerPurchased = false;
+
     private void Start()
     {
-        if (previewPrefab == null)
-        {
+        // Check if tower preview prefab is assigned in the inspector, else set it to inactive
+        if (previewPrefab == null){
             Debug.LogError("Preview Prefab not assigned!");
             return;
+        } else{
+            previewPrefab.SetActive(false);
         }
 
         if (CameraManager.Instance == null)
@@ -61,46 +66,40 @@ public class PlacementManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameStateManager.Instance == null)
+        // only allow tower placement if the game is in strategy Mode and a tower has been purchased
+        if (GameStateManager.Instance == null || GameStateManager.Instance.CurrentState != GameState.StrategyMode){
             return;
-
-        if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
-            return;
-
-        MovePreview();
+        } else if (towerPurchased){
+            Cursor.lockState = CursorLockMode.Confined;
+            MovePreview();
+        }
     }
 
-    void MovePreview()
-    {
-        Ray ray = strategyCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f,
-            LayerMask.GetMask("Ground", "Buildable")))
-        {
+    void MovePreview(){
+        Ray ray = strategyCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, LayerMask.GetMask("Ground", "Buildable"))){
             Vector3 pos = hit.point;
             pos.y = 0.5f;
             previewInstance.transform.position = pos;
         }
+
+        // Ensure the preview instance is active when moving the mouse
+        previewInstance.SetActive(true);
     }
-    /**
-<<<<<<< HEAD
-        // public void TryPlaceTower()
-=======
-        void OnPlace(InputAction.CallbackContext ctx)
-        {
-            if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
-                return;
 
-            TryPlaceTower();
-        }
->>>>>>> Adreanna
-            **/
-    void TryPlaceTower()
+    void OnPlace(InputAction.CallbackContext ctx)
+    {
+        if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
+            return;
 
+        TryPlaceTower();
+    }
+
+    public void TryPlaceTower()
     {
         PlacementValidator validator = previewInstance.GetComponent<PlacementValidator>();
 
-        if (validator != null && validator.IsValid())
+        if (validator != null && validator.IsValid() && towerPurchased)
         {
             int index = (int)selectedTowerType;
 
@@ -112,7 +111,16 @@ public class PlacementManager : MonoBehaviour
                     Quaternion.identity
                 );
                 FindFirstObjectByType<RTSCameraController>()?.NotifyPlacement();
+
+                // Reset the preview instance and towerPurchased flag after placing the tower
+                previewInstance.SetActive(false);
+                towerPurchased = false;
             }
         }
+    }
+
+    // method to set the towerPurchased flag to true when a tower is purchased
+    public void setTowerPurchased(){
+        towerPurchased = true;
     }
 }

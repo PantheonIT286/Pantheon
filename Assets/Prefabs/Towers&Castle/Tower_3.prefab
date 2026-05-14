@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1173372908287439881}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2831604048634737778}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 248225655910943160}
   - component: {fileID: 1473873760663733984}
   - component: {fileID: 3073832530002012698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower_3
-  m_TagString: Untagged
+  m_TagString: Tower3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,9 +210,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7918335002988649766, guid: 3015e4425f0b9dd4d9c06b0e04945259, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d0f4fb8f49aaa864593db57e79f4ecd5, type: 2}
+    - target: {fileID: -7029948723529949830, guid: 3015e4425f0b9dd4d9c06b0e04945259, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 3015e4425f0b9dd4d9c06b0e04945259, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3015e4425f0b9dd4d9c06b0e04945259, type: 3}
       propertyPath: m_Name
       value: Wizard Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3015e4425f0b9dd4d9c06b0e04945259, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

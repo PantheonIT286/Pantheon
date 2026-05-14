@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1797388552587006539}
   - component: {fileID: 8668911773211204269}
   - component: {fileID: 4659428266615594924}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower_1
-  m_TagString: Untagged
+  m_TagString: Tower1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8393724877914033095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8242506989349995655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,10 +198,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 5c4960da326707b4690777fa04c690d5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5c4960da326707b4690777fa04c690d5, type: 3}
       propertyPath: m_Name
       value: Cannon Fort
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c4960da326707b4690777fa04c690d5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202271454713460447, guid: 5c4960da326707b4690777fa04c690d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9409cd4d01f3de540b45bae459edeeb0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 6fdd16fc2a7323042909a8c4f545e347, type: 3}

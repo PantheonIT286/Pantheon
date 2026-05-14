@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 547390357653620901}
   - component: {fileID: 1472952138829196329}
   - component: {fileID: 8792473561445175902}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower_4
-  m_TagString: Untagged
+  m_TagString: Tower4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,11 +33,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1448688021719286128}
-<<<<<<< HEAD:Assets/Prefabs/Towers/Tower_4.prefab
-  - {fileID: 7838887401620553378}
-=======
   - {fileID: 8429999650709206912}
->>>>>>> Alex:Assets/Prefabs/Towers&Castle/Tower_4.prefab
+  - {fileID: 7838887401620553378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &547390357653620901
@@ -100,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1448688021719286128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7838887401620553378}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa9ffc240b4e6404bb8784f1f7084a7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa9ffc240b4e6404bb8784f1f7084a7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -213,9 +210,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7918335002988649766, guid: fa9ffc240b4e6404bb8784f1f7084a7b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c6cf86f0d598f454c900d7ff769dae4a, type: 2}
+    - target: {fileID: -7029948723529949830, guid: fa9ffc240b4e6404bb8784f1f7084a7b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fa9ffc240b4e6404bb8784f1f7084a7b, type: 3}
       propertyPath: m_Name
       value: Knight Barracks
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa9ffc240b4e6404bb8784f1f7084a7b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
