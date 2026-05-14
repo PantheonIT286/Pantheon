@@ -24,6 +24,7 @@ public class EconomyManager : MonoBehaviour
         else if (Instance != this)
         {
             Debug.LogWarning("Multiple EconomyManager instances found.");
+            Destroy(gameObject);
         }
     }
 
@@ -35,7 +36,11 @@ public class EconomyManager : MonoBehaviour
 
     public void AddGold(int amount)
     {
-        if (amount <= 0) return;
+        if (amount <= 0)
+        {
+            Debug.LogWarning("AddGold called with non-positive amount: " + amount);
+            return;
+        }
 
         gold += amount;
         Debug.Log("<color=yellow>Gained Gold! Current Gold:</color> " + gold);
@@ -44,7 +49,12 @@ public class EconomyManager : MonoBehaviour
 
     public bool TrySpendGold(int amount)
     {
-        if (amount <= 0) return true;
+        if (amount == 0) return true;
+        if (amount < 0)
+        {
+            Debug.LogWarning("TrySpendGold called with negative amount: " + amount);
+            return false;
+        }
         if (gold < amount) return false;
 
         gold -= amount;

@@ -57,7 +57,7 @@ public class Tower: MonoBehaviour{
         }
 
         Vector3 tilePos = TowerTile.transform.position;
-        Instantiate(unitPrefab, tilePos, Quaternion.identity);
+        _ = Instantiate(unitPrefab, tilePos, Quaternion.identity);
     }
 
     private void Update(){
