@@ -1,8 +1,9 @@
 using UnityEngine;
 using TMPro;
 
-public class PauseMenu : MonoBehaviour{
+public class PauseManager : MonoBehaviour{
    public TextMeshProUGUI speedText; // UI text component to check the current game speed.
+   public WaveSpawner waveSpawner; // Reference to the WaveSpawner script to check the current wave status.
 
    // GameObject component to set pause/resume sprite
       public GameObject pause;
@@ -10,13 +11,13 @@ public class PauseMenu : MonoBehaviour{
 
    // Ensures resume sprite is set at first load
    public void Start(){
-      setResume();
+      setPause();
    }
 
     // Pauses the game and activates the pause menu UI.
     public void Pause(){
       // Check if the game is currently running and toggle the pause state accordingly.
-      if (Time.timeScale >= 1){
+      if (Time.timeScale >= 1 && waveSpawner.IsSpawning() == true){
          Time.timeScale = 0; 
          pause.SetActive(true);
          resume.SetActive(false);
@@ -43,9 +44,14 @@ public class PauseMenu : MonoBehaviour{
          }  
    }
 
-   // Sets icon to resume sprite
-   private void setResume(){
-      pause.SetActive(false);
-      resume.SetActive(true);
-   }
+   // Utility methods to set the appropriate sprite for the pause and resume states.
+      public void setResume(){
+         pause.SetActive(false);
+         resume.SetActive(true);
+      }
+
+      public void setPause(){
+         pause.SetActive(true);
+         resume.SetActive(false);
+      }
 }

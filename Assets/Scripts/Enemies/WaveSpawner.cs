@@ -27,10 +27,10 @@ public class WaveSpawner : MonoBehaviour
     public PathManager path;
 
     public TextMeshProUGUI waveInfo; // UI text component to display wave information.
-    public TextMeshProUGUI waveSpawnerInfo; // UI text component to display spawner information.
-
     private int currentWaveIndex = 0;
     private bool isSpawning = false;
+
+    public PauseManager pauseManager; // Reference to the PauseMenu script to check the current pause status.
 
     /*void Update()
     {
@@ -77,7 +77,7 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("<color=green>Wave Manager:</color> Wave complete.");
         if (waveInfo != null)
             waveInfo.text = "Wave Clear";
-        waveSpawnerInfo.text = "Start";
+        pauseManager.setPause(); // Set sprite to pause when starting the wave.
     }
 
     // This function can be called by a UI button to start the wave.    
@@ -86,8 +86,14 @@ public class WaveSpawner : MonoBehaviour
         if (!isSpawning)
         {
             Debug.Log("Button Pressed.");
+            pauseManager.setResume(); // Set sprite to resume when starting the wave.
             StartCoroutine(SpawnWave());
-            waveSpawnerInfo.text = "Wait";
         }
+    }
+
+    // This function can be called by a UI button to check if the wave is currently spawning.
+    public bool IsSpawning()
+    {
+        return isSpawning;
     }
 }
