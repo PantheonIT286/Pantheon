@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-<<<<<<< HEAD
-  - Enemy
-=======
->>>>>>> 3bed726a0c1d1a28d685af2d9835171235dd0878
-  - Tower
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -16,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - Buildable
-  - Blocked
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -48,10 +43,3 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7

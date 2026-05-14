@@ -82,20 +82,21 @@ public class PlacementManager : MonoBehaviour
             previewInstance.transform.position = pos;
         }
     }
-
+    /**
 <<<<<<< HEAD
-     public void TryPlaceTower()
+        // public void TryPlaceTower()
 =======
-    void OnPlace(InputAction.CallbackContext ctx)
-    {
-        if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
-            return;
+        void OnPlace(InputAction.CallbackContext ctx)
+        {
+            if (GameStateManager.Instance.CurrentState != GameState.StrategyMode)
+                return;
 
-        TryPlaceTower();
-    }
-
-    void TryPlaceTower()
+            TryPlaceTower();
+        }
 >>>>>>> Adreanna
+            **/
+    void TryPlaceTower()
+
     {
         PlacementValidator validator = previewInstance.GetComponent<PlacementValidator>();
 
