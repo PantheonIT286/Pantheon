@@ -22,7 +22,7 @@ public class ResourceInfoManager : MonoBehaviour{
     private void Start(){
         // Initialize the resourceInfoPanels array with the child GameObjects of the parentGameObject
         resourceInfoPanels = new GameObject[transform.childCount];
-        economyManager = FindFirstObjectByType<EconomyManager>();
+        economyManager = EconomyManager.Instance;
         hideAllPanels(); // Call the method to hide all panels at the start
     }
 

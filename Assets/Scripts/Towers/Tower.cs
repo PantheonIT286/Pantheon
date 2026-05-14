@@ -18,7 +18,7 @@ public class Tower: MonoBehaviour{
             placementManager = FindFirstObjectByType<PlacementManager>();
         }
         if (economyManager == null){
-            economyManager = FindFirstObjectByType<EconomyManager>();
+            economyManager = EconomyManager.Instance;
         }
     }
     public void PlaceTower(){

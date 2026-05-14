@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
 
         Debug.Log("Enemy died");
 
-        EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
+        EconomyManager economy = EconomyManager.Instance;
         if (economy != null)
         {
             economy.AddEnemyKillGold();

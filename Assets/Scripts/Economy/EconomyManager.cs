@@ -3,6 +3,8 @@ using TMPro;
 
 public class EconomyManager : MonoBehaviour 
 {
+    public static EconomyManager Instance { get; private set; }
+
     public int gold = 100;
     public TextMeshProUGUI currencyText;
     [SerializeField] private int towerPlacementCost = 500;
@@ -13,6 +15,18 @@ public class EconomyManager : MonoBehaviour
     public int TowerPlacementCost => towerPlacementCost;
     public int UnitPlacementCost => unitPlacementCost;
     
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Debug.LogWarning("Multiple EconomyManager instances found.");
+        }
+    }
+
     void Start()
     {
         Debug.Log("<color=yellow>Game Started. Current Gold:</color> " + gold);

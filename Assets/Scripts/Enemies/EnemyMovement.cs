@@ -109,7 +109,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (giveGold)
         {
-            EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
+            EconomyManager economy = EconomyManager.Instance;
             if (economy != null)
             {
                 economy.AddEnemyKillGold();
