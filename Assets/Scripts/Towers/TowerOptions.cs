@@ -14,14 +14,12 @@ public class TowerOptions : MonoBehaviour{
 
     private void Update(){
         // creates a ray from the camera to the mouse position
-        Ray ray = strategyCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         // open the tower options panel when right-clicking on a tower if the game is not in possession mode
-        if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Tower")) && Input.GetMouseButtonDown(1)){
-            if (hit.collider.CompareTag("Tower1") || hit.collider.CompareTag("Tower2") || hit.collider.CompareTag("Tower3") || hit.collider.CompareTag("Tower4")){
-                resourceInfoManager.TowerOptionsPanel(hit.collider.gameObject); 
-            }
+        if (Physics.Raycast(ray, out hit, 70f, LayerMask.GetMask("Tower")) && Input.GetMouseButtonDown(1)){
+            resourceInfoManager.TowerOptionsPanel(hit.collider.gameObject); 
         }  
     }
 }   

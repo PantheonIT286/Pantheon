@@ -63,10 +63,9 @@ public class PlacementManager : MonoBehaviour
         if (inputActions != null)
             inputActions.RTS.Place.performed -= OnPlace;
     }
-
-    private void Update()
-    {
-        // only allow tower placement if the game is in strategy Mode and a tower has been purchased
+    
+    // displays the tower preview when a tower has been purchased and game is in strategy mode
+    private void Update(){
         if (GameStateManager.Instance == null || GameStateManager.Instance.CurrentState != GameState.StrategyMode){
             return;
         } else if (towerPurchased){
@@ -75,7 +74,9 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
-    void MovePreview(){
+    // moves the tower preview to the mouse position on the ground
+    private void MovePreview(){
+        // sets the position of the preview instance to the mouse position on the ground using raycasting
         Ray ray = strategyCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, LayerMask.GetMask("Ground", "Buildable"))){
             Vector3 pos = hit.point;

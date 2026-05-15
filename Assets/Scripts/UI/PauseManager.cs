@@ -35,10 +35,10 @@ public class PauseManager : MonoBehaviour{
                Time.timeScale = 1; 
                setResume();
             } else if (speedText.text == "2"){
-               Time.timeScale = 2; 
+               Time.timeScale = 3; 
                setResume();
             } else if (speedText.text == "3"){
-               Time.timeScale = 3; 
+               Time.timeScale = 5; 
                setResume();
             }
          }  

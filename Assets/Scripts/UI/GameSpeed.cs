@@ -21,7 +21,7 @@ public class GameSpeed : MonoBehaviour{
     // Changes the game speed between normal, medium, and fast.
         public void mediumSpeed(){
             if (Time.timeScale == 1){
-                Time.timeScale = 2;
+                Time.timeScale = 3;
                 speedText.text = "2";
 
                 speed1.SetActive(false);
@@ -32,8 +32,8 @@ public class GameSpeed : MonoBehaviour{
         }
 
         private void fastSpeed(){
-            if (Time.timeScale == 2){
-                Time.timeScale = 3;
+            if (Time.timeScale == 3){
+                Time.timeScale = 5;
                 speedText.text = "3";
 
                 speed2.SetActive(false);

@@ -10,6 +10,14 @@ public class ResourceInfoManager : MonoBehaviour{
 
         public RTSCameraController rtsCameraController; // Reference to the RTS camera controller script to manage camera movement  
     
+        public CurrencyHandler currencyHandler; // Reference to the EconomyManager script to manage game stats information display
+
+        public CastleHealth castleHealth; // Reference to the CastleHealth script to manage game stats information display
+
+        public EconomyManager economyManager; // Reference to the EconomyManager script to manage game stats information display
+
+        public WaveSpawner waveSpawner; // Reference to the WaveSpawner script to manage game stats information display
+
     // private variables
         private GameObject[] resourceInfoPanels; // Array to hold references to the resource info panels
 
@@ -26,18 +34,22 @@ public class ResourceInfoManager : MonoBehaviour{
 
     // manages the display of the tower information panel when a tower button is clicked
         public void TowersInfoPanel(GameObject towerButton){
-            towerSelected = towerButton; // Store the reference to the currently selected tower button
+            // Store the reference to the currently selected tower
+            towerSelected = towerButton;
 
-            // Check the name of the tower button that was clicked and update the tower information accordingly
+            // Check the name of the tower button that was clicked and update the tower information displayed in the panel accordingly
             if (towerButton.name == "Tower1"){
-                // Update the tower information displayed in the panel using the TowersInfoManager
                 infoManager.UpdateTowerInfo("Cannon Fort", "Shoots cannonballs at enemies, dealing heavy splash damage.");
+                currencyHandler.setTowerPrice(1);
             } else if (towerButton.name == "Tower2"){
                 infoManager.UpdateTowerInfo("Archer Tower", "Shoots arrows at nearby enemies.");
+                currencyHandler.setTowerPrice(2);
             } else if (towerButton.name == "Tower3"){
                 infoManager.UpdateTowerInfo("Wizard Tower", "Applies debuffs and status effects to enemies.");
+                currencyHandler.setTowerPrice(3);
             } else if (towerButton.name == "Tower4"){
                 infoManager.UpdateTowerInfo("Knight Barrack", "Spawn knights within a restricted area that will attack nearby enemies.");
+                currencyHandler.setTowerPrice(4);
             }
 
             // Hide all panels before showing the tower information panel
@@ -46,26 +58,30 @@ public class ResourceInfoManager : MonoBehaviour{
         }
 
         public void TowersPurchaseButton(){
-            // Check the name of the tower button that was clicked and perform the purchase action accordingly
-            if (towerSelected.name == "Tower1"){
-                Debug.Log("Purchasing Tower 1");
-                towerHUDController.SelectTower1();
-            } else if (towerSelected.name == "Tower2"){
-                Debug.Log("Purchasing Tower 2");
-                towerHUDController.SelectTower2();
-            } else if (towerSelected.name == "Tower3"){
-                Debug.Log("Purchasing Tower 3");
-                towerHUDController.SelectTower3();
-            } else if (towerSelected.name == "Tower4"){
-                Debug.Log("Purchasing Tower 4");
-                towerHUDController.SelectTower4();
+            // Check if the player can purchase the tower based on their current gold amount
+            if (currencyHandler.getCanPurchase()){
+
+                // Check the name of the tower selected and perform the purchase action accordingly
+                if (towerSelected.name == "Tower1"){
+                    Debug.Log("Purchasing Tower 1");
+                    towerHUDController.SelectTower1();
+                } else if (towerSelected.name == "Tower2"){
+                    Debug.Log("Purchasing Tower 2");
+                    towerHUDController.SelectTower2();
+                } else if (towerSelected.name == "Tower3"){
+                    Debug.Log("Purchasing Tower 3");
+                    towerHUDController.SelectTower3();
+                } else if (towerSelected.name == "Tower4"){
+                    Debug.Log("Purchasing Tower 4");
+                    towerHUDController.SelectTower4();
+                }
+
+                // Set the towerPurchased flag in the PlacementManager to allow tower placement after purchase
+                placementManager.setTowerPurchased();
+
+                // Hide all panels before performing the purchase action
+                hideAllPanels();
             }
-
-            // Set the towerPurchased flag in the PlacementManager to allow tower placement after purchase
-            placementManager.setTowerPurchased();
-
-            // Hide all panels before performing the purchase action
-            hideAllPanels();
         }
 
     
@@ -77,12 +93,16 @@ public class ResourceInfoManager : MonoBehaviour{
             // Check the name of the tower button that was clicked and update the tower information accordingly
             if (spellButton.name == "Spell1"){
                 infoManager.UpdateSpellInfo("Meteor Crash", "A giant meteor crashes onto the ground to deal massive damage, covering a wide radius.");
+                currencyHandler.setSpellPrice(1);
             } else if (spellButton.name == "Spell2"){
                 infoManager.UpdateSpellInfo("Lightning Strikes", "A storm cloud forms to strike lightning, stunning and damaging enemies with minimal effort.");
+                currencyHandler.setSpellPrice(2);
             } else if (spellButton.name == "Spell3"){
                 infoManager.UpdateSpellInfo("Gold Rush", "Earn double the gold from killing enemies for a brief period.");
+                currencyHandler.setSpellPrice(3);
             } else if (spellButton.name == "Spell4"){
                 infoManager.UpdateSpellInfo("Tower Healing", " Restores the health of all towers within a certain radius.");
+                currencyHandler.setSpellPrice(4);
             }
 
             // Hide all panels before showing the spell information panel
@@ -91,19 +111,21 @@ public class ResourceInfoManager : MonoBehaviour{
         }
 
         public void SpellsPurchaseButton(){
-            // Check the name of the spell button that was clicked and perform the purchase action accordingly
-            if (spellSelected.name == "Spell1"){
-                Debug.Log("Purchasing Spell 1");
-            } else if (spellSelected.name == "Spell2"){
-                Debug.Log("Purchasing Spell 2");
-            } else if (spellSelected.name == "Spell3"){
-                Debug.Log("Purchasing Spell 3");
-            } else if (spellSelected.name == "Spell4"){
-                Debug.Log("Purchasing Spell 4");
-            }
+            if (currencyHandler.getCanPurchase()){
+                // Check the name of the spell button that was clicked and perform the purchase action accordingly
+                if (spellSelected.name == "Spell1"){
+                    Debug.Log("Purchasing Spell 1");
+                } else if (spellSelected.name == "Spell2"){
+                    Debug.Log("Purchasing Spell 2");
+                } else if (spellSelected.name == "Spell3"){
+                    Debug.Log("Purchasing Spell 3");
+                } else if (spellSelected.name == "Spell4"){
+                    Debug.Log("Purchasing Spell 4");
+                }
 
-            // Hide all panels before performing the purchase action
-            hideAllPanels();
+                // Hide all panels before performing the purchase action
+                hideAllPanels();
+            }
         }
 
 
@@ -111,11 +133,11 @@ public class ResourceInfoManager : MonoBehaviour{
     public void GameStatsInfoPanel(GameObject gameStatsUI){
         // Check the name of the game stats UI element that was clicked and update the game stats information accordingly
         if (gameStatsUI.name == "Health"){
-            infoManager.UpdateGameStatsInfo("Castle Health: ");
+            infoManager.UpdateGameStatsInfo("Castle Health: " + castleHealth.health);
         } else if (gameStatsUI.name == "Currency"){
-            infoManager.UpdateGameStatsInfo("Gold Amount: ");
+            infoManager.UpdateGameStatsInfo("Gold Amount: " + economyManager.gold);
         } else if (gameStatsUI.name == "Wave"){
-            infoManager.UpdateGameStatsInfo("Wave Number: ");
+            infoManager.UpdateGameStatsInfo("Wave Number: " + waveSpawner.getCurrentWaveIndex());
         }
 
         // Hide all panels before showing the game stats panel

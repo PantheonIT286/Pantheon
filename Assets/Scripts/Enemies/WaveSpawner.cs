@@ -32,15 +32,6 @@ public class WaveSpawner : MonoBehaviour
 
     public PauseManager pauseManager; // Reference to the PauseMenu script to check the current pause status.
 
-    /*void Update()
-    {
-        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && !isSpawning)
-        {
-            Debug.Log("Space Bar Pressed.");
-            StartCoroutine(SpawnWave());
-        }
-    }*/
-
     IEnumerator SpawnWave()
     {
         isSpawning = true;
@@ -95,5 +86,9 @@ public class WaveSpawner : MonoBehaviour
     public bool IsSpawning()
     {
         return isSpawning;
+    }
+
+    public int getCurrentWaveIndex(){
+        return currentWaveIndex;
     }
 }
