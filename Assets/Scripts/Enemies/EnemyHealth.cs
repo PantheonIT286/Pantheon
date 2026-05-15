@@ -34,7 +34,14 @@ public class EnemyHealth : MonoBehaviour
 
         Debug.Log("Enemy died");
 
-        // GameManager.Instance.AddGold(10);
+
+        EnemyData enemyData = GetComponent<EnemyMovement>().data;
+        GameObject economy = GameObject.FindWithTag("Economy");
+        EconomyManager economyManager = economy.GetComponent<EconomyManager>();
+            if (economyManager != null)
+            {
+                economyManager.AddGold(enemyData.goldReward);
+            }
 
         Destroy(gameObject);
     }

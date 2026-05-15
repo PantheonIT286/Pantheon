@@ -15,7 +15,8 @@ MonoBehaviour:
   enemyName: Slow
   speed: 2.5
   health: 40
-  goldReward: 25
+  castleDamage: 15
+  goldReward: 10
   prefab: {fileID: 1069591052389716506, guid: 945e0587395d7f044b26c75d85ca1c68, type: 3}
   aggressionChance: 0.5
   detectionRadius: 10

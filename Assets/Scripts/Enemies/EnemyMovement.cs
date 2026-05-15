@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -72,7 +73,12 @@ public class EnemyMovement : MonoBehaviour
         // Roll for aggression based on EnemyData
         if (Random.value > data.aggressionChance) return;
 
-        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        string[] tagsToFind = { "Tower1", "Tower2", "Tower3", "Tower4"};
+        List<GameObject> towers = new List<GameObject>();
+        foreach (string tag in tagsToFind){
+            towers.AddRange(GameObject.FindGameObjectsWithTag(tag));
+        }
+        
         foreach (GameObject tower in towers)
         {
             float dist = Vector3.Distance(transform.position, tower.transform.position);
@@ -109,10 +115,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (giveGold)
         {
-            EconomyManager economy = Object.FindFirstObjectByType<EconomyManager>();
-            if (economy != null)
+            GameObject economy = GameObject.FindWithTag("Economy");
+            EconomyManager economyManager = economy.GetComponent<EconomyManager>();
+            if (economyManager != null)
             {
-                economy.AddGold(data.goldReward);
+                economyManager.AddGold(data.goldReward);
             }
         }
 

@@ -54,6 +54,11 @@ public class FPSController : MonoBehaviour
 
         HandleMovement();
         HandleLook();
+
+        // temp escape from FPS
+        if (Input.GetKeyDown(KeyCode.E)){
+            StrategyMode();
+        }
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
@@ -106,10 +111,12 @@ public class FPSController : MonoBehaviour
     }
 
     //temp
-    public void StrategyMode()
-    {
-        if (GameStateManager.Instance.CurrentState != GameState.PossessionMode)
-            return;
+    public void StrategyMode(){
+        if (GameStateManager.Instance == null) return;
+        if (GameStateManager.Instance.CurrentState != GameState.PossessionMode) return;
+
+        moveInput = Vector2.zero;
+        lookInput = Vector2.zero;
 
         GameStateManager.Instance.SetState(GameState.StrategyMode);
     }

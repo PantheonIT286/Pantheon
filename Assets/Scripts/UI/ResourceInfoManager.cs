@@ -40,16 +40,16 @@ public class ResourceInfoManager : MonoBehaviour{
             // Check the name of the tower button that was clicked and update the tower information displayed in the panel accordingly
             if (towerButton.name == "Tower1"){
                 infoManager.UpdateTowerInfo("Cannon Fort", "Shoots cannonballs at enemies, dealing heavy splash damage.");
-                currencyHandler.setTowerPrice(1);
+                currencyHandler.setTowerPrice(1, "Purchase");
             } else if (towerButton.name == "Tower2"){
                 infoManager.UpdateTowerInfo("Archer Tower", "Shoots arrows at nearby enemies.");
-                currencyHandler.setTowerPrice(2);
+                currencyHandler.setTowerPrice(2, "Purchase");
             } else if (towerButton.name == "Tower3"){
                 infoManager.UpdateTowerInfo("Wizard Tower", "Applies debuffs and status effects to enemies.");
-                currencyHandler.setTowerPrice(3);
+                currencyHandler.setTowerPrice(3, "Purchase");
             } else if (towerButton.name == "Tower4"){
                 infoManager.UpdateTowerInfo("Knight Barrack", "Spawn knights within a restricted area that will attack nearby enemies.");
-                currencyHandler.setTowerPrice(4);
+                currencyHandler.setTowerPrice(4, "Purchase");
             }
 
             // Hide all panels before showing the tower information panel
@@ -153,12 +153,16 @@ public class ResourceInfoManager : MonoBehaviour{
             // Check the name of the selected tower and update the tower information displayed in the panel accordingly
             if (towerSelected.CompareTag("Tower1")){
                 infoManager.UpdateTowerInfo("Cannon Fort");
+                currencyHandler.setTowerPrice(1, "Sell");
             } else if (towerSelected.CompareTag("Tower2")){
                 infoManager.UpdateTowerInfo("Archer Tower");
+                currencyHandler.setTowerPrice(2, "Sell");
             } else if (towerSelected.CompareTag("Tower3")){
                 infoManager.UpdateTowerInfo("Wizard Tower");
+                currencyHandler.setTowerPrice(3, "Sell");
             } else if (towerSelected.CompareTag("Tower4")){
                 infoManager.UpdateTowerInfo("Knight Barrack");
+                currencyHandler.setTowerPrice(4, "Sell");
             }
 
             // Hide all panels before showing the tower options panel

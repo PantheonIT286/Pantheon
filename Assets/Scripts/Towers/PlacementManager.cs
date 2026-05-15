@@ -69,7 +69,6 @@ public class PlacementManager : MonoBehaviour
         if (GameStateManager.Instance == null || GameStateManager.Instance.CurrentState != GameState.StrategyMode){
             return;
         } else if (towerPurchased){
-            Cursor.lockState = CursorLockMode.Confined;
             MovePreview();
         }
     }
